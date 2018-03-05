@@ -1,33 +1,8 @@
 #!/usr/bin/env python
-import macros
+from macros import *
 import numpy as np
 from collections import deque
 import world
-
-WAIT = 0
-UP = 1
-DOWN = 2
-LEFT = 3
-RIGHT = 4
-
-INVALID = -999
-MSG_LIMITLOWER = 0x0
-MSG_LIMITUPPER = 0xF
-
-SENSE_RANGE = 2
-COMM_RANGE = 2
-MOVE_SPEED = 1
-MSG_BUFFER_SIZE = 3
-
-FRAME_HEIGHT = 480
-FRAME_WIDTH = 600
-
-FRAME_MARGIN = 10
-CELL_MARGIN = 5
-
-MAX_AGENTS_IN_CELL = 4
-
-COLORS = ['red', 'green', 'blue', 'black', 'white', 'magenta', 'cyan', 'yellow']
 
 class distrib_agent:
     actions = (WAIT, UP, DOWN, LEFT, RIGHT)
@@ -113,8 +88,9 @@ class distrib_agent:
                 self.world_act.visualize.move_agent_vis(self, self.vis_obj, old_y, old_x, pos_y, pos_x)
 
     def observe_quadrant(self, quadrant):
-        (dy, dx) = __quadrant_to_dxdy__(quadrant)
+        (dy, dx) = self.__quadrant_to_dxdy__(quadrant)
         sensor_map = self.world_act.map_view(self.y, self.x, dy, dx)
+        print 'Agent #', self.aindex, ' observes quadrant: ', message
 
     def broadcast_msg(self, message):
         # wnrows, wncols = self.world_act.get_size()
@@ -134,7 +110,7 @@ class distrib_agent:
                 message = MSG_LIMITUPPER
             agent.msg_buf.append(message)
             agent.msg_rcvd = True
-        print 'Agent #', self.aindex, ' broadcasts : ', message
+        print 'Agent #', self.aindex, ' broadcasts: ', message
 
     def print_msgs(self):
         if(self.msg_rcvd):
