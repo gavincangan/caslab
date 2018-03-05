@@ -27,12 +27,12 @@ CELL_MARGIN = 5
 
 MAX_AGENTS_IN_CELL = 4
 
+COLORS = ['red', 'green', 'blue', 'black', 'white', 'magenta', 'cyan', 'yellow']
 
 class distrib_agent:
     actions = (WAIT, UP, DOWN, LEFT, RIGHT)
     agent_count = 0
     def __init__(self, world_obj, y, x):
-        distrib_agent.agent_count +=1
         self.world_act = world_obj
         self.obs_map = np.ones_like(world_obj.occ_map)
         self.y = INVALID
@@ -44,6 +44,7 @@ class distrib_agent:
         self.__fill_buffer_w_zeros__()
         self.vis_obj = 0
         self.world_act.add_agent(self, y, x)
+        distrib_agent.agent_count +=1
 
     @staticmethod
     def __move_cmd_to_vector__(move_cmd):

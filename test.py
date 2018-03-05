@@ -26,6 +26,7 @@ CELL_MARGIN = 5
 
 MAX_AGENTS_IN_CELL = 4
 
+COLORS = ['red', 'green', 'blue', 'black', 'white', 'magenta', 'cyan', 'yellow']
 
 if __name__ == "__main__":
     not_my_home = world(5,6)
@@ -70,6 +71,27 @@ if __name__ == "__main__":
     my_agent.move(UP)
     vis.canvas.update()
     vis.canvas.after(2000)
+
+    my_agent.move(LEFT)
+    vis.canvas.update()
+    vis.canvas.after(2000)
+
+    my_agent.move(DOWN)
+    vis.canvas.update()
+    vis.canvas.after(2000)
+
+    my_agent.move(RIGHT)
+    vis.canvas.update()
+    vis.canvas.after(2000)
+
+    my_agent.move(RIGHT)
+    vis.canvas.update()
+    vis.canvas.after(2000)
+
+    my_agent.move(RIGHT)
+    vis.canvas.update()
+    vis.canvas.after(2000)
+
     for agent in all_agents:
         print str(agent)
     print("Hello")

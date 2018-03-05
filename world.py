@@ -25,6 +25,7 @@ CELL_MARGIN = 5
 
 MAX_AGENTS_IN_CELL = 4
 
+COLORS = ['red', 'green', 'blue', 'black', 'white', 'magenta', 'cyan', 'yellow']
 
 class world:
     def __init__(self, nrows, ncols):

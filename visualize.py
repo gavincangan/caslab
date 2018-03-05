@@ -27,6 +27,8 @@ CELL_MARGIN = 5
 
 MAX_AGENTS_IN_CELL = 4
 
+COLORS = ['red', 'green', 'blue', 'black', 'white', 'magenta', 'cyan', 'yellow']
+
 class visualize:
     def __init__(self, world_data):
         self.frame = Tk()
@@ -48,14 +50,14 @@ class visualize:
             self.vis_world_ptr.append(curr_row)
 
     def get_pos_in_cell(self, crow, ccol, index, nagents):
-        if(nagents == 1):
+        if(MAX_AGENTS_IN_CELL == 1):
             agent_h = self.agent_h
             agent_w = self.agent_w
             agent_y1 = FRAME_MARGIN + (crow * self.cell_h) + CELL_MARGIN
             agent_y2 = agent_y1 + agent_h
             agent_x1 = FRAME_MARGIN + (ccol * self.cell_w) + CELL_MARGIN
             agent_x2 = agent_x1 + agent_w
-        elif(nagents < 5):
+        elif(MAX_AGENTS_IN_CELL < 5):
             agent_h, agent_w = self.get_agent_size(MAX_AGENTS_IN_CELL)
             agent_y1 = FRAME_MARGIN + (crow * self.cell_h) + CELL_MARGIN + ((index/2) * (CELL_MARGIN + agent_h))
             agent_y2 = agent_y1 + agent_h
@@ -73,7 +75,7 @@ class visualize:
                     nagents = len(cell)
                     for agent in range(nagents):
                         y1, x1, y2, x2 = self.get_pos_in_cell(crow, ccol, agent, nagents)
-                        cell[agent].vis_obj = self.canvas.create_oval(x1, y1, x2, y2, fill="blue")
+                        cell[agent].vis_obj = self.canvas.create_oval(x1, y1, x2, y2, fill=COLORS[cell[agent].aindex])
 
     def move_agent_vis(self, agent_obj, vis_obj, orow, ocol, crow, ccol):
         ocell = self.world.ptr_map[orow][ocol]
@@ -98,10 +100,10 @@ class visualize:
         return (cell_h, cell_w)
 
     def get_agent_size(self, nagents):
-        if(nagents == 1):
+        if(MAX_AGENTS_IN_CELL == 1):
             agent_h = self.cell_h - 2 * CELL_MARGIN
             agent_w = self.cell_w - 2 * CELL_MARGIN
-        elif(nagents < 5):
+        elif(MAX_AGENTS_IN_CELL < 5):
             agent_h = (self.cell_h - 3 * CELL_MARGIN) / 2
             agent_w = (self.cell_w - 3 * CELL_MARGIN) / 2
         else:
