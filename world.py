@@ -44,7 +44,7 @@ class world:
         y1 = (y + dy)
         x,y = self.xy_saturate(x, y)
         x1,y1 = self.xy_saturate(x1, y1)
-        return (self.map[y: y1, x: x1])
+        return (self.occ_map[y: y1, x: x1])
 
     def agents_in_range(self, y1, x1, y2, x2):
         # print(y1, x1, y2, x2)

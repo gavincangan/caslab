@@ -5,7 +5,9 @@ from collections import deque
 import world
 
 class distrib_agent:
-    actions = (WAIT, UP, DOWN, LEFT, RIGHT)
+    move_actions = (WAIT, UP, DOWN, LEFT, RIGHT)
+    obs_actions = (1, 2, 3, 4)
+    comm_actions = range(0xF)
     agent_count = 0
     def __init__(self, world_obj, y, x):
         self.world_act = world_obj
@@ -89,8 +91,8 @@ class distrib_agent:
 
     def observe_quadrant(self, quadrant):
         (dy, dx) = self.__quadrant_to_dxdy__(quadrant)
-        sensor_map = self.world_act.map_view(self.y, self.x, dy, dx)
-        print 'Agent #', self.aindex, ' observes quadrant: ', message
+        sensor_map = self.world_act.occ_map_view(self.y, self.x, dy, dx)
+        print 'Agent #', self.aindex, ' observes quadrant: ', quadrant
 
     def broadcast_msg(self, message):
         # wnrows, wncols = self.world_act.get_size()
