@@ -30,8 +30,14 @@ class experiment:
                 agent.broadcast_msg(random.choice(agent.comm_actions))
                 self.vis.canvas.update()
                 self.vis.canvas.after(int(ts * 200))
+            print '\n'
+            for agent in self.list_agents:
+                print agent
+            print '\n\n'
         self.vis.canvas.after(int(ts * 1000))
 
 if __name__ == "__main__":
-    my_exp = experiment( (10,10), 5, ((3,2),(1,6),(7,8),(2,6),(0,9)) )
-    my_exp.run_random(0.5, 10)
+    my_exp = experiment( (10,10), 7, ((3,2),(1,6),(7,8),(2,6),(0,9),(5,6),(4,7)) )
+    my_exp.run_random(0.5, 3)
+    # my_exp = experiment( (5,5), 6, ((3,2),(1,2),(2,4),(0,4),(3,0),(4,4)) )
+    # my_exp.run_random(0.5, 3)

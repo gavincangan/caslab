@@ -7,7 +7,7 @@ import world
 class distrib_agent:
     move_actions = (WAIT, UP, DOWN, LEFT, RIGHT)
     obs_actions = (1, 2, 3, 4)
-    comm_actions = range(0xF)
+    comm_actions = range(MSG_LIMITLOWER, MSG_LIMITUPPER + 1)
     agent_count = 0
     def __init__(self, world_obj, y, x):
         self.world_act = world_obj
@@ -92,7 +92,8 @@ class distrib_agent:
     def observe_quadrant(self, quadrant):
         (dy, dx) = self.__quadrant_to_dxdy__(quadrant)
         sensor_map = self.world_act.occ_map_view(self.y, self.x, dy, dx)
-        print 'Agent #', self.aindex, ' observes quadrant: ', quadrant
+        # print 'Agent #', self.aindex, ' observes quadrant: ', quadrant
+        print 'A', self.aindex, ' Q', quadrant,
 
     def broadcast_msg(self, message):
         # wnrows, wncols = self.world_act.get_size()
@@ -112,7 +113,8 @@ class distrib_agent:
                 message = MSG_LIMITUPPER
             agent.msg_buf.append(message)
             agent.msg_rcvd = True
-        print 'Agent #', self.aindex, ' broadcasts: ', message
+        # print 'Agent #', self.aindex, ' broadcasts: ', message
+        print 'A', self.aindex, ' M', message
 
     def print_msgs(self):
         if(self.msg_rcvd):
