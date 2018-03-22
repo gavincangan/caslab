@@ -1,7 +1,7 @@
 from gworld import *
 
-a = GridWorld(6,10, [(2,1),(1,2)] )
-# a = gworld(5,10)
+# a = GridWorld(6,10, [(2,1),(1,2)] )
+a = gworld(5,10)
 
 print a.cells
 print a.get_nbors(1,1)
